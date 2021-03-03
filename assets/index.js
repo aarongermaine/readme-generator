@@ -50,6 +50,11 @@ const questions = () => {
     },
     {
       type: "input",
+      name: "githubURL",
+      message: "What is your Github URL?",
+    },
+    {
+      type: "input",
       name: "email",
       message: "Please enter your business email",
     },
@@ -57,12 +62,35 @@ const questions = () => {
 };
 
 // TODO: Create a function to write README file
-const writeToFile = (answers) => `# ${answers.title}`;
+const writeToFile = (answers) =>
+  `# ${answers.title}
+    ${answers.description}
+    
+   ## Installation
+    ${answers.installation} 
+    
+   ## Usage
+    ${answers.usage}
+    
+   ## Contributions
+    ${answers.contribution}
+    
+   ## Testing 
+    ${answers.test}
+    
+   ## License
+    ${answers.license}
+    
+   ## Questions
+    ${answers.github} - ${answers.githubURL}
+    Email: ${answers.email} `;
 
 // TODO: Create a function to initialize app
 const init = () => {
   questions().then((answers) =>
     writeFileAsync("readme.md", writeToFile(answers))
+      .then(() => console.log("Readme Generation Complete"))
+      .catch((err) => console.error(err))
   );
 };
 
