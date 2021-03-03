@@ -57,10 +57,14 @@ const questions = () => {
 };
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+const writeToFile = (answers) => `# ${answers.title}`;
 
 // TODO: Create a function to initialize app
-function init() {}
+const init = () => {
+  questions().then((answers) =>
+    writeFileAsync("readme.md", writeToFile(answers))
+  );
+};
 
 // Function call to initialize app
 init();
