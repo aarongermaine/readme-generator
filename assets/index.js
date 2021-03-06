@@ -3,6 +3,8 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 
+const generateMarkdown = require("assets/utils/generateMarkdown.js");
+
 const writeFileAsync = util.promisify(fs.writeFile);
 // TODO: Create an array of questions for user input
 const questions = () => {
@@ -41,7 +43,7 @@ const questions = () => {
       type: "checkbox",
       message: "What license would you like to use?",
       name: "license",
-      choices: ["MIT", "GNU", "Mozilla", "Unlicense"],
+      choices: ["MIT", "GNU GPL v3", "Mozilla", "Unlicense"],
     },
     {
       type: "input",
