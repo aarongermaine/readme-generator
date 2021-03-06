@@ -63,8 +63,23 @@ const questions = () => {
 
 // TODO: Create a function to write README file
 const writeToFile = (answers) =>
-  `# ${answers.title}
+  `
+  # ${answers.title}
     ${answers.description}
+  
+  # Table Of Contents
+
+  - [Installation](##=installation)
+
+  - [Usage](##=usage)
+
+  - [Contributions](##=contributions)
+
+  - [Testing](##=testing)
+
+  - [License](##=license)
+
+  - [Questions](##=questions)
     
    ## Installation
     ${answers.installation} 
