@@ -1,6 +1,6 @@
 # Readme Generator
 
-    This is a program using node to help people easily and efficiently genereate a professional readme!
+    This is a program using node to help people easily and efficiently generate a professional readme!
 
 # Table Of Contents
 
