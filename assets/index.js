@@ -3,7 +3,7 @@ const inquirer = require("inquirer");
 const fs = require("fs");
 const util = require("util");
 
-const generateMarkdown = require("assets/utils/generateMarkdown.js");
+const renderLicenseBadge = require("./utils/generateMarkdown.js");
 
 const writeFileAsync = util.promisify(fs.writeFile);
 // TODO: Create an array of questions for user input
@@ -96,20 +96,19 @@ const writeToFile = (answers) =>
     ${answers.test}
     
    ## License
-    ${answers.license}
+   [![License](${answers.badge})](${answers.licenseLink})
+   ${answers.licenseText}
     
    ## Questions
     ${answers.github} - ${answers.githubURL}
     Email: ${answers.email} `;
 
 // TODO: Create a function to initialize app
-const init = () => {
-  questions().then((answers) =>
-    writeFileAsync("readme.md", writeToFile(answers))
-      .then(() => console.log("Readme Generation Complete"))
-      .catch((err) => console.error(err))
-  );
-};
+(() => {
+  questions().then((answers) => {
+    const render = renderLicenseBadge(answers);
+    writeFileAsync("readme.md", writeToFile(render));
 
-// Function call to initialize app
-init();
+    console.log("Readme Generation Complete");
+  });
+})();
